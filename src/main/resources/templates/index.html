@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TAXI ROOSTER</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center row" >
+    <div class="container navbar m-4" style="background-color: #edbb99">
+        <h1>TAXI ROOSTER</h1>
+        <a class="btn btn-dark h2" th:href="@{/dodaj}">dodaj prevoz</a>
+        <a class="btn btn-dark h2" th:href="@{/vozniki}">vozniki</a>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+    </div>
+
+
+    <DIV  class="col-sm-8">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    IME
+                </th>
+                <th>
+                    PRIIMEK
+                </th>
+                <th>
+                    ZAČETNA DESTINACIJA
+                </th>
+                <th>
+                    KONČNA DESTINACIJA
+                </th>
+                <th>
+                    UREDI
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="prevoz : ${listPrevozi}">
+                <tr>
+                    <td>[[${prevoz.id}]]</td>
+                    <td>[[${prevoz.ime}]]</td>
+                    <td>[[${prevoz.priimek}]]</td>
+                    <td>[[${prevoz.z_destinacija}]]</td>
+                    <td>[[${prevoz.k_destinacija}]]</td>
+
+                    <td>
+                        <a class="btn btn-outline-dark h4 mr-3" th:href="@{'/dodaj/' + ${prevoz.id}}">Uredi</a>
+                        <a class=" btn btn-outline-warning h4" th:href="@{'/izbrisi/' + ${prevoz.id}}">Izbriši</a>
+                    </td>
+
+                </tr>
+
+            </th:block>
+
+            </tbody>
+        </table>
+
+    </DIV>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj prevoz</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container navbar m-4" style="background-color: #edbb99">
+  <h1>DODAJ PREVOZ</h1>
+  <a class="btn btn-dark h2" th:href="@{/}">domov</a>
+  <a class="btn btn-dark h2" th:href="@{/vozniki}">vozniki</a>
+</div>
+<div class="container-fluid text-center col-sm-4 row">
+
+
+  <form  th:action="@{/dodaj/new}" method="post" th:object="${prevozi}" style="max-width:600px;margin:left auto;">
+
+    <div class="border border-secondary rounded p-4">
+      <input type="hidden" th:field="*{id}">
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Ime</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{ime}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Priimek</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{priimek}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">e-pošta</label>
+        <div class="col-sm-8">
+          <input type="email" th:field="*{email}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">telefon</label>
+        <div class="col-sm-8">
+          <input type="tel" th:field="*{telefon}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Začetna destinacija</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{z_destinacija}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Končna destinacija</label>
+        <div class="col-sm-8">
+          <input type="text" th:field="*{k_destinacija}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Datum</label>
+        <div class="col-sm-8">
+          <input type="date"  th:field="*{datumString}" >
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">čas</label>
+        <div class="col-sm-8">
+          <input type="time" th:field="*{casString}" >
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary m-2">NAROČI</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+</body>
+</html>

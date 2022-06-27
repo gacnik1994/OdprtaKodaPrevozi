@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vozniki</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div class="container navbar m-4" style="background-color: #edbb99">
+    <h1>VOZNIKI</h1>
+        <a class="btn btn-dark h2" th:href="@{/}">HOME</a>
+    <div class="m-2">
+        <a class="btn btn-dark h2" th:href="@{/vozniki/dodaj}">Dodaj voznika</a>
+    </div>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+
+    </div>
+    <DIV>
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    IME
+                </th>
+                <th>
+                    PRIIMEK
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="user : ${listVoznik}">
+                    <tr>
+                        <td>[[${user.id}]]</td>
+                        <td>[[${user.ime}]]</td>
+                        <td>[[${user.priimek}]]</td>
+                        <td>
+                            <a class="h4 mr-3" th:href="@{'/vozniki/uredi/' + ${user.id}}">Uredi</a>
+                            <a class="h4" th:href="@{'/vozniki/izbrisi/' + ${user.id}}">Izbriši</a>
+                        </td>
+                    </tr>
+
+                </th:block>
+
+            </tbody>
+        </table>
+
+    </DIV>
+</div>
+</body>
+</html>
