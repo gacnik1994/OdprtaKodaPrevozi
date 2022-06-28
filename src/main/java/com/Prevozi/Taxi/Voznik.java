@@ -17,6 +17,7 @@ public class Voznik {
     private String priimek;
 
 
+
     public Integer getId() {
         return id;
     }
@@ -40,6 +41,10 @@ public class Voznik {
     public void setPriimek(String priimek) {
         this.priimek = priimek;
     }
+
+
+
+
 
     @Override
     public String toString() {

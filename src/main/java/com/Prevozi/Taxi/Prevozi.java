@@ -33,9 +33,18 @@ public class Prevozi {
     @Column(nullable = true, length = 45)
     private int voznik;
 
+
+
+
+
+
     @Column
     private String casString;
+    @Column
     private String datumString;
+
+    public Prevozi() {
+    }
 
     public String getCasString() {
         return casString;
@@ -132,6 +141,8 @@ public class Prevozi {
     public void setVoznik(int voznik) {
         this.voznik = voznik;
     }
+
+
 
 
     @Override

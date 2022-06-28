@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class PrevoziController {
@@ -23,6 +24,8 @@ public class PrevoziController {
         List<Voznik> listVozniki = service2.listAll();
         model.addAttribute("listPrevozi",listPrevozi);
         model.addAttribute("listVoznik",listVozniki);
+
+
         return "index";
     }
     @GetMapping("/dodaj")
@@ -40,25 +43,29 @@ public class PrevoziController {
         pr.setDatum(ld);
         List<Voznik> v = service2.listAll();
         List<Prevozi> p = service.listAll();
-        for(int i = 0; i<p.size();i++){
+        /*for(int i = 0; i<p.size();i++){
             if(p.get(i).getDatumString().equals(pr.getDatumString()) && p.get(i).getCasString().equals(pr.getCasString())){
                 for(int j = 0; j<v.size();j++){
                     if(v.get(j).getId() != p.get(i).getVoznik() && p.get(i).getVoznik()<v.get(j).getId()){
                         pr.setVoznik(v.get(j).getId());
+
                         break;
                     } else if ((j-1)==v.size()) {
                         ra.addFlashAttribute("Na voljo ni voznika!");
-                        return "redirect/";
+                        return "redirect/home";
                     }
                 }
             } else if ((i-1) == p.size()) {
                 pr.setVoznik(v.get(0).getId());
+
             }
-        }
-        //pr.setVoznik(v.get(0).getId());
+        }*/
+        Random rand = new Random();
+        int n = rand.nextInt(v.size());
+        pr.setVoznik(v.get(n).getId());
         service.save(pr);
         ra.addFlashAttribute("message", "Prevoz je bil uspešno dodan.");
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("dodaj/{id}")
@@ -70,7 +77,7 @@ public class PrevoziController {
             return "dodajP";
         }catch (VoznikNotFoundException e){
             ra.addFlashAttribute("message", e.getMessage());
-            return "redirect:/";
+            return "redirect:/home";
         }
     }
 
@@ -82,6 +89,6 @@ public class PrevoziController {
         //}catch (VoznikNotFoundException e){
         //  ra.addFlashAttribute("message", e.getMessage());
         //}
-        return "redirect:/";
+        return "redirect:/home";
     }
 }
