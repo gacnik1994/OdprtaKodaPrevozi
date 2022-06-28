@@ -17,7 +17,7 @@ public class PrevoziController {
     @Autowired private PrevoziService service;
     @Autowired private VoznikService service2;
 
-    @GetMapping("")
+    @GetMapping("/home")
     public String prikaziPrevoze(Model model){
         List<Prevozi> listPrevozi = service.listAll();
         List<Voznik> listVozniki = service2.listAll();
@@ -28,6 +28,7 @@ public class PrevoziController {
     @GetMapping("/dodaj")
     public String dodajPrevoz(Model model){
         model.addAttribute("prevozi", new Prevozi());
+        model.addAttribute("podatek", "IZPOLNI");
         return "dodajP";
     }
 
@@ -65,6 +66,7 @@ public class PrevoziController {
         try {
             Prevozi pr = service.get(id);
             model.addAttribute("prevozi", pr);
+            model.addAttribute("podatek", "UREDI");
             return "dodajP";
         }catch (VoznikNotFoundException e){
             ra.addFlashAttribute("message", e.getMessage());
